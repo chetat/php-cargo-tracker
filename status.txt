@@ -1,0 +1,7 @@
+Registered Package
+Pickup In Progress 
+Pickup
+In Transit
+In customs clearance 
+Out For Delivery
+Delivered
