@@ -17,7 +17,7 @@ $tracking = new Tracking($db);
 $stmt = $tracking->read();
 $num = $stmt->rowCount();
 
-if ($sum > 0){
+if ($num > 0){
     // tracking items array
     $trackings_array = array();
     $trackings_array["data"] = array();
