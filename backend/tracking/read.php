@@ -29,17 +29,23 @@ if ($num > 0){
         extract($row);
         $tracking_item = array(
             "id" => $id,
-            "content" => $content,
-            "shipped_date" => $shipped_date,
-            "estimated_date" => $estimated_date,
-            "shipment_type" =>$shipment_type,
+            "product" => $product,
+            "release_date" => $release_date,
+            "delivery_date" => $delivery_date,
+            "origin" =>$origin,
             "tracking_number" => $tracking_number,
             "receiver_name" => $receiver_name,
             "receiver_address" => $receiver_address,
-            "telephone" =>$telephone,
+            "receiver_phone" =>$receiver_phone,
             "destination" => $destination,
             "current_location" => $current_location,
-            "status" => $status
+            "shipping_status" => $shipping_status,
+            "receiver_email" => $receiver_email,
+            "shipper_name" =>$shipper_name,
+            "shipper_email" =>$shipper_email,
+            "shipper_phone" => $shipper_phone,
+            "weight" => $weight
+        
         );
         array_push($trackings_array["data"], $tracking_item);
     }

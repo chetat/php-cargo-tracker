@@ -32,32 +32,43 @@ $second_int = rand(0, 10000);
 $third_seq = generateRandomString();
 $data = json_decode(file_get_contents("php://input"));
 //Check requests body not empty
-if(!empty($data->shipped_date) &&
-   !empty($data->estimated_date) &&
-   !empty($data->shipment_type) &&
-   !empty($data->content) &&
+if(!empty($data->release_date) &&
+   !empty($data->delivery_date) &&
+   !empty($data->origin) &&
+   !empty($data->product) &&
    !empty($data->receiver_name) &&
    !empty($data->receiver_address) &&
-   !empty($data->telephone) &&
+   !empty($data->receiver_phone) &&
    !empty($data->destination) &&
    !empty($data->current_location) &&
+   !empty($data->receiver_email) &&
+   !empty($data->shipper_name) &&
+   !empty($data->shipper_email) &&
+   !empty($data->shipper_phone) &&
+   !empty($data->weight) &&
    !empty($data->status)){
 
 
     $track_generated_number = $first_seq."-".$second_int.$third_seq;
 
     //Set tacking object properties
-    $tracking->shipped_date = $data->shipped_date;
-    $tracking->estimated_date = $data->estimated_date;
-    $tracking->shipment_type = $data->shipment_type;
-    $tracking->content = $data->content;
+    $tracking->release_date = $data->release_date;
+    $tracking->delivery_date = $data->delivery_date;
+    $tracking->origin = $data->origin;
+    $tracking->product = $data->product;
     $tracking->tracking_number = $track_generated_number;
     $tracking->receiver_name = $data->receiver_name;
     $tracking->receiver_address = $data->receiver_address;
-    $tracking->telephone = $data->telephone;
+    $tracking->receiver_phone = $data->receiver_phone;
     $tracking->destination = $data->destination;
     $tracking->current_location = $data->current_location;
-    $tracking->status = $data->status;
+    $tracking->receiver_email = $data->receiver_email;
+    $tracking->shipper_name = $data->shipper_name;
+    $tracking->shipper_email = $data->shipper_email;
+    $tracking->shipper_phone = $data->shipper_phone;
+    $tracking->weight = $data->weight;
+    $tracking->shipping_status = $data->status;
+    
     if($tracking->create()){
         http_response_code(201);
         echo json_encode(

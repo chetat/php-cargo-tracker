@@ -23,18 +23,25 @@ $data = json_decode(file_get_contents("php://input"));
 // set ID property of tracking to be updated
 $tracking->id = $data->id;
   
-// set tracking property values
-$tracking->shipped_date = $data->shipped_date;
-$tracking->estimated_date = $data->estimated_date;
-$tracking->shipment_type = $data->shipment_type;
-$tracking->content = $data->content;
-$tracking->tracking_number = $data->tracking_number;
-$tracking->receiver_name = $data->receiver_name;
-$tracking->receiver_address = $data->receiver_address;
-$tracking->telephone = $data->telephone;
-$tracking->destination = $data->destination;
-$tracking->current_location = $data->current_location;
-$tracking->status = $data->status;
+    // set tracking property values
+    $tracking->release_date = $data->release_date;
+    $tracking->delivery_date = $data->delivery_date;
+    $tracking->origin = $data->origin;
+    $tracking->product = $data->product;
+    $tracking->tracking_number = $data->tracking_number;
+    $tracking->receiver_name = $data->receiver_name;
+    $tracking->receiver_address = $data->receiver_address;
+    $tracking->receiver_phone = $data->receiver_phone;
+    $tracking->destination = $data->destination;
+    $tracking->current_location = $data->current_location;
+    $tracking->receiver_email = $data->$receiver_email;
+    $tracking->shipper_name = $data->shipper_name;
+    $tracking->shipper_email = $data->shipper_email;
+    $tracking->shipper_phone = $data->shipper_phone;
+    $tracking->weight = $data->weight;
+    $tracking->shipping_status = $data->status;
+
+
   
 // update the product
 if($tracking->update()){
