@@ -113,6 +113,88 @@ class Tracking {
             return false;
         }
     }
+
+    public function update(){
+
+        $sql = 'UPDATE tracking SET 
+            tracking_num=:tracking_number,
+            shipped_date=:shipped_date,
+            estimated_date=:estimated_date,
+            shipment_type=:shipment_type,
+            content=:content,
+            receiver_name=:receiver_name,
+            receiver_address=:receiver_address,
+            current_location=:current_location,
+            destination=:destination,
+            telephone=:telephone,
+            status=:stat WHERE id = :id';
+
+
+
+        $stmt = $this->conn->prepare($sql);
+        $shipped_date_formatted = date_format(date_create($this->shipped_date),"Y-m-d H:i:s");
+        $estimate_date_formatted = date_format(date_create($this->estimated_date), "Y-m-d H:i:s");
+
+        // sanitize
+        
+        $this->tracking_number = htmlspecialchars(strip_tags($this->tracking_number));
+        $shipped_date_formatted  =htmlspecialchars(strip_tags($shipped_date_formatted ));
+        $estimate_date_formatted =htmlspecialchars(strip_tags($estimate_date_formatted));
+        $this->shipment_type = htmlspecialchars(strip_tags( $this->shipment_type));
+        $this->content = htmlspecialchars(strip_tags($this->content));
+        $this->receiver_name= htmlspecialchars(strip_tags($this->receiver_name));
+        $this->receiver_address = htmlspecialchars(strip_tags($this->receiver_address));
+        $this->current_location = htmlspecialchars(strip_tags($this->current_location));
+        $this->destination = htmlspecialchars(strip_tags($this->destination));
+        $this->status = htmlspecialchars(strip_tags( $this->status));
+        $this->telephone = htmlspecialchars(strip_tags($this->telephone));
+
+
+    
+        // bind values
+        $stmt->bindParam(":tracking_number", $this->tracking_number);
+        $stmt->bindParam(":shipped_date", $shipped_date_formatted);
+        $stmt->bindParam(":estimated_date", $estimate_date_formatted);
+        $stmt->bindParam(":shipment_type", $this->shipment_type);
+        $stmt->bindParam(":content", $this->content);
+        $stmt->bindParam(":receiver_name", $this->receiver_name);
+        $stmt->bindParam(":receiver_address", $this->receiver_address);
+        $stmt->bindParam(":current_location", $this->current_location);
+        $stmt->bindParam(":destination", $this->destination);
+        $stmt->bindParam(":telephone", $this->telephone);
+        $stmt->bindParam(":stat", $this->status);
+        $stmt->bindParam(':id', $this->id);
+
+        if($stmt->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+    // delete the tracking
+    function delete(){
+    
+        // delete query
+        $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
+    
+        // prepare query
+        $stmt = $this->conn->prepare($query);
+    
+        // sanitize
+        $this->id=htmlspecialchars(strip_tags($this->id));
+    
+        // bind id of record to delete
+        $stmt->bindParam(1, $this->id);
+    
+        // execute query
+        if($stmt->execute()){
+            return true;
+        }
+    
+        return false;
+    }
 } 
 
 ?>
