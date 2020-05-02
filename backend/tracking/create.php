@@ -69,16 +69,17 @@ if(!empty($data->release_date) &&
     $tracking->weight = $data->weight;
     $tracking->shipping_status = $data->status;
     
-    if($tracking->create()){
+    $t_id = $tracking->create();
+    if($t_id){
+        $tracking->id = $t_id;
         http_response_code(201);
         echo json_encode(
             array("success" => "create with success",
-                  "code" => $tracking->tracking_number));
+                  "data" => $tracking));
     }else{
         http_response_code(500);
         echo json_encode(
             array("success" => "Failed to create Tracking"));
-
     }
 
    
@@ -87,7 +88,7 @@ if(!empty($data->release_date) &&
         http_response_code(400);
     
         // tell the user
-        echo json_encode(array("message" => $tracking->create()));
+        echo json_encode(array("message" => "Bad Request"));
     }
 ?>
 

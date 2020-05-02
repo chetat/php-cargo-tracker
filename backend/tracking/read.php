@@ -33,7 +33,7 @@ if ($num > 0){
             "release_date" => $release_date,
             "delivery_date" => $delivery_date,
             "origin" =>$origin,
-            "tracking_number" => $tracking_number,
+            "tracking_number" => $tracking_num,
             "receiver_name" => $receiver_name,
             "receiver_address" => $receiver_address,
             "receiver_phone" =>$receiver_phone,
@@ -47,6 +47,7 @@ if ($num > 0){
             "weight" => $weight
         
         );
+        echo $tracking_number;
         array_push($trackings_array["data"], $tracking_item);
     }
 

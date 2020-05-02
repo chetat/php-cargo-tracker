@@ -10,18 +10,18 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 include_once '../config/database.php';
 include_once '../models/Tracking.php';
   
-// get database connection
-$database = new Database();
-$db = $database->getConnection();
-  
-// prepare Tracking object
-$tracking = new Tracking($db);
-  
-// get id of product to be edited
-$data = json_decode(file_get_contents("php://input"));
-  
-// set ID property of tracking to be updated
-$tracking->id = $data->id;
+    // get database connection
+    $database = new Database();
+    $db = $database->getConnection();
+    
+    // prepare Tracking object
+    $tracking = new Tracking($db);
+    
+    // get id of product to be edited
+    $data = json_decode(file_get_contents("php://input"));
+    
+    // set ID property of tracking to be updated
+    $tracking->id = $data->id;
   
     // set tracking property values
     $tracking->release_date = $data->release_date;
@@ -34,7 +34,7 @@ $tracking->id = $data->id;
     $tracking->receiver_phone = $data->receiver_phone;
     $tracking->destination = $data->destination;
     $tracking->current_location = $data->current_location;
-    $tracking->receiver_email = $data->$receiver_email;
+    $tracking->receiver_email = $data->receiver_email;
     $tracking->shipper_name = $data->shipper_name;
     $tracking->shipper_email = $data->shipper_email;
     $tracking->shipper_phone = $data->shipper_phone;
@@ -50,7 +50,7 @@ if($tracking->update()){
     http_response_code(200);
   
     // tell the user
-    echo json_encode(array("message" => "Tracking was updated."));
+    echo json_encode(array("message" => $tracking));
 }
   
 // if unable to update the product, tell the user

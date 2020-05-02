@@ -44,7 +44,7 @@ if ($tracking->id != null){
     http_response_code(200);
   
     // make it json format
-    echo json_encode($tracking_item);
+    echo json_encode(array("data" => $tracking_item));
 
     
     }else{

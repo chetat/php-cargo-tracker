@@ -6,12 +6,12 @@
 <title>Admin Dashboard
 </title>
 <!-- Stylesheets -->
-<link href="../../css/bootstrap.css" rel="stylesheet">
-<link href="../../css/color.css" rel="stylesheet">
-<link href="../../css/style.css" rel="stylesheet">
-<link href="../../css/responsive.css" rel="stylesheet">
-<link rel="shortcut icon" href="../../images/favicon.png" type="image/x-icon">
-<link rel="icon" href="../../images/favicon.png" type="image/x-icon">
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/color.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<link href="css/responsive.css" rel="stylesheet">
+<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+<link rel="icon" href="images/favicon.png" type="image/x-icon">
 <script src="https://use.fontawesome.com/d6c9cd6fcf.js"></script>
 
 <!-- Responsive -->
@@ -174,7 +174,7 @@
         	<div class="auto-container clearfix">
             	<!--Logo-->
             	<div class="logo pull-left">
-                	<a href="../../index.html" class="img-responsive"><img src="../../images/logo-small-2.png" alt="" title=""></a>
+                	<a href="index.html" class="img-responsive"><img src="images/logo-small-2.png" alt="" title=""></a>
                 </div>
                 
                 <!--Right Col-->
@@ -234,131 +234,213 @@
     </section>
     
     <div class="table-container container">
-      <button type="button" class="mt-5 btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add New Shipment</button>
+		<div>
+			<p id="success-msg" style="display: none;">New Shipment Added</p>
+		</div>
+      <button type="button" class="mt-5 btn btn-primary" data-toggle="modal" data-target="#trackingModal" data-whatever="@mdo">Add New Shipment</button>
 
         <table class="table mt-5">
             <thead>
               <tr>
                 <th scope="col">Tracking Number</th>
-                <th scope="col">Shipment Type</th>
-                <th scope="col">Es. Arrival Date</th>
-                <th scope="col">Shipped Date</th>
-                <th scope="col">Content</th>
-                <th scope="col">Destination </th>
+                <th scope="col">Origin</th>
+                <th scope="col">Delivery Date</th>
+                <th scope="col">Product</th>
+				<th scope="col">Destination </th>
+				<th scope="col">Receiver Email</th>
                 <th scope="col">Receiver Name </th>
                 <th scope="col">Receiver Address </th>
-                <th scope="col">Telephone</th>
+                <th scope="col">Receiver Phone </th>
                 <th scope="col">Current Location</th>
-                <th scope="col">Status </th>
-
-
-                
+				<th scope="col">Status </th>
+				<th scope="col" colspan="2">Actions</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>1</th>
-                <td>1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>@fat</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td><button type="button" class="btn btn-primary">Edit</button></td>
-                <td><button type="button" class="btn btn-danger">Delete</button></td>
-              </tr>
+            <tbody id="tbody">
+              
             </tbody>
           </table>
 	</div>
 	<!--Modal Box For New Shipment -------------->
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="trackingModal" tabindex="-1" role="dialog" aria-labelledby="trackingModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title" id="exampleModalLabel">New Shipment</h4>
+            <h4 class="modal-title" id="trackingModalLabel">New Shipment</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <form id="shipment-form">
+            <form id="tracking-form">
               <div class="form-group">
-                <label for="receiver-name" class="col-form-label">Receiver Name</label>
-                <input type="text" class="form-control" id="receiver-name" placeholder="Example: John Smith">
+                <label for="receiver-name"  class="col-form-label">Receiver Name</label>
+				<input type="text" class="form-control" id="receiver-name" placeholder="Example: John Smith" required >
               </div>
               <div class="form-group">
                 <label for="receiver-address" class="col-form-label">Receiver Address</label>
-                <input type="text" class="form-control" id="receiver-address" placeholder="Example: Walking Street, CA">
+                <input type="text" class="form-control" id="receiver-address" placeholder="Example: Walking Street, CA" required>
 			  </div>
 			  <div class="form-group">
                 <label for="receiver-email" class="col-form-label">Receiver Email</label>
-                <input type="text" class="form-control" id="receiver-email" placeholder="Example: jsmith@email.com">
+                <input type="text" class="form-control" id="receiver-email" placeholder="Example: jsmith@email.com" required>
               </div>
               <div class="form-group">
-                <label for="telephone" class="col-form-label">Receiver Phone</label>
-                <input type="tel" class="form-control" id="telephone" placeholder="Example: +88 0658 568 89">
+                <label for="receiver-phone" class="col-form-label">Receiver Phone</label>
+                <input type="tel" class="form-control" id="receiver-phone", placeholder="Example: +88 0658 568 89" required>
 			  </div>
 			  <div class="form-group">
-                <label for="destination" class="col-form-label">Origin</label>
-                <input type="text" class="form-control" id="destination" placeholder="Example: New York">
+                <label for="origin" class="col-form-label">Origin</label>
+                <input type="text" class="form-control" id="origin" placeholder="Example: New York" required>
 			  </div>
               <div class="form-group">
                 <label for="destination" class="col-form-label">Destination</label>
-                <input type="text" class="form-control" id="destination" placeholder="Example: Paris">
+                <input type="text" class="form-control" id="destination" placeholder="Example: Paris" required>
 			  </div>
 
 			  <div class="form-group">
                 <label for="shipper-name" class="col-form-label">Shipper Name</label>
-                <input type="text" class="form-control" id="shipper-name" placeholder="Example: Alex Eugene">
+                <input type="text" class="form-control" id="shipper-name" placeholder="Example: Alex Eugene" required>
               </div>
               <div class="form-group">
                 <label for="shipper-email" class="col-form-label">Shipper Email</label>
-                <input type="email" class="form-control" id="shipper-email" placeholder="Example: eugene@email.com">
+                <input type="email" class="form-control" id="shipper-email" placeholder="Example: eugene@email.com" required>
 			  </div>
 			  <div class="form-group">
                 <label for="shipper-phone" class="col-form-label">Shipper Phone</label>
-                <input type="phone" class="form-control" id="shipper-phone" placeholder="Example: +88 0658 568 89">
+                <input type="phone" class="form-control" id="shipper-phone" placeholder="Example: +88 0658 568 89" required >
               </div>
               <div class="form-group">
                 <label for="current-location" class="col-form-label">Current Location</label>
-                <input type="text" class="form-control" id="current-location" placeholder="Example: Washignton">
+                <input type="text" class="form-control" id="current-location" placeholder="Example: Washignton" required>
 			  </div>
 			  <div class="form-group">
                 <label for="product" class="col-form-label">Product</label>
-                <input type="text" class="form-control" id="product" placeholder="Example: Chiwawa Puppy">
+                <input type="text" class="form-control" id="product" placeholder="Example: Chiwawa Puppy" required>
 			  </div>
 			  <div class="form-group">
                 <label for="weight" class="col-form-label">Weight</label>
-                <input type="text" class="form-control" id="weight" placeholder="Example: 1.5KG">
+                <input type="text" class="form-control" id="weight" placeholder="Example: 1.5KG" required>
               </div>
 			  <div class="form-group">
                 <label for="shipping-status" class="col-form-label">Shipping Status</label>
-                <input type="text" class="form-control" id="shipping-status" placeholder="Example: In Transit">
+                <input type="text" class="form-control" id="shipping-status" placeholder="Example: In Transit" required>
 			  </div>
 			  <div class="form-group">
                 <label for="release-date" class="col-form-label">Cargo Release Date</label>
-                <input type="date" class="form-control" id="release-date" placeholder="Example: 2020-04-30">
+                <input type="date" class="form-control" id="release-date" placeholder="Example: 2020-04-30" required>
 			  </div>
 			  <div class="form-group">
                 <label for="delivery-date" class="col-form-label">Cargo Delivery Date</label>
-                <input type="date" class="form-control" id="delivery-date" placeholder="Example: 2020-04-30">
-              </div>
+                <input type="date" class="form-control" id="delivery-date" placeholder="Example: 2020-04-30" required>
+			  </div>
+			  <button type="submit" class="btn btn-primary">Create Shipment</button>
             </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Create Shipment</button>
           </div>
         </div>
       </div>
-    </div>
+	</div>
+	
+
+
+
+<!--Modal Box For Update Shipment -------------->
+
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModal" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h4 class="modal-title" id="updateModalLabel">Update Shipment</h4>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+		  <form id="update-tracking-form">
+			<div class="form-group">
+				<input type="hidden" class="form-control" id="tracking_number">
+			  <input type="hidden" class="form-control" id="tracking_id" >
+			<div class="form-group">
+			  <label for="ureceiver-name"  class="col-form-label">Receiver Name</label>
+			  <input type="text" class="form-control" id="ureceiver-name" placeholder="Example: John Smith" required >
+			</div>
+			<div class="form-group">
+			  <label for="ureceiver-address" class="col-form-label">Receiver Address</label>
+			  <input type="text" class="form-control" id="ureceiver-address" placeholder="Example: Walking Street, CA" required>
+			</div>
+			<div class="form-group">
+			  <label for="ureceiver-email" class="col-form-label">Receiver Email</label>
+			  <input type="text" class="form-control" id="ureceiver-email" placeholder="Example: jsmith@email.com" required>
+			</div>
+			<div class="form-group">
+			  <label for="ureceiver-phone" class="col-form-label">Receiver Phone</label>
+			  <input type="tel" class="form-control" id="ureceiver-phone", placeholder="Example: +88 0658 568 89" required>
+			</div>
+			<div class="form-group">
+			  <label for="uorigin" class="col-form-label">Origin</label>
+			  <input type="text" class="form-control" id="uorigin" placeholder="Example: New York" required>
+			</div>
+			<div class="form-group">
+			  <label for="udestination" class="col-form-label">Destination</label>
+			  <input type="text" class="form-control" id="udestination" placeholder="Example: Paris" required>
+			</div>
+
+			<div class="form-group">
+			  <label for="ushipper-name" class="col-form-label">Shipper Name</label>
+			  <input type="text" class="form-control" id="ushipper-name" placeholder="Example: Alex Eugene" required>
+			</div>
+			<div class="form-group">
+			  <label for="ushipper-email" class="col-form-label">Shipper Email</label>
+			  <input type="email" class="form-control" id="ushipper-email" placeholder="Example: eugene@email.com" required>
+			</div>
+			<div class="form-group">
+			  <label for="ushipper-phone" class="col-form-label">Shipper Phone</label>
+			  <input type="phone" class="form-control" id="ushipper-phone" placeholder="Example: +88 0658 568 89" required >
+			</div>
+			<div class="form-group">
+			  <label for="ucurrent-location" class="col-form-label">Current Location</label>
+			  <input type="text" class="form-control" id="ucurrent-location" placeholder="Example: Washignton" required>
+			</div>
+			<div class="form-group">
+			  <label for="uproduct" class="col-form-label">Product</label>
+			  <input type="text" class="form-control" id="uproduct" placeholder="Example: Chiwawa Puppy" required>
+			</div>
+			<div class="form-group">
+			  <label for="uweight" class="col-form-label">Weight</label>
+			  <input type="text" class="form-control" id="uweight" placeholder="Example: 1.5KG" required>
+			</div>
+			<div class="form-group">
+			  <label for="ushipping-status" class="col-form-label">Shipping Status</label>
+			  <input type="text" class="form-control" id="ushipping-status" placeholder="Example: In Transit" required>
+			</div>
+			<div class="form-group">
+			  <label for="urelease-date" class="col-form-label">Cargo Release Date</label>
+			  <input type="date" class="form-control" id="urelease-date" placeholder="Example: 2020-04-30" required>
+			</div>
+			<div class="form-group">
+			  <label for="udelivery-date" class="col-form-label">Cargo Delivery Date</label>
+			  <input type="date" class="form-control" id="udelivery-date" placeholder="Example: 2020-04-30" required>
+			</div>
+			<button type="submit" class="btn btn-primary">Update Shipment</button>
+		  </form>
+		</div>
+	  </div>
+	</div>
+  </div>
+
+
+
+
+
+
 
       <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-</body>
+		<script src="js/admin-script.js"></script>
+		<script>
+	
+		</script>
+	</body>
 </html>

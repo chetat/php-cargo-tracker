@@ -137,7 +137,8 @@ class Tracking {
         $stmt->bindParam(":receiver_email", $this->receiver_email);
 
         if($stmt->execute()){
-            return true;
+            $this->id = $this->conn->lastInsertId();
+            return $this->id;
         }else{
             return false;
         }
@@ -212,7 +213,7 @@ class Tracking {
  $stmt->bindParam(":id", $this->id);
 
  
-        if($stmt->execute()){
+if($stmt->execute()){
             return true;
         }else{
             return false;
